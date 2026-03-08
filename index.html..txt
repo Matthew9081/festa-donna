@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Festa della Donna</title>
+
+<style>
+
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+border:2px solid #ffd6e7;
+}
+
+.envelope.open .letter{
+opacity:1;
+transform:translateY(-130px);
+}
+
+/* messaggio finale */
+
+.final-message{
+margin-top:40px;
+font-size:26px;
+color:white;
+opacity:0;
+transition:1s;
+}
+
+.show-message{
+opacity:1;
+}
+
+/* animazione fiori */
+
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(360deg);
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<h1 class="title">Buona Festa della Donna 🌼</h1>
+
+<div class="envelope" onclick="openEnvelope()">
+
+  <div class="base"></div>
+  <div class="flap"></div>
+
+  <div class="letter">
+    Auguri alla donna più simpatica che conosco!! 🌼
+    <br><br>
+    Sei speciale ❤️
+  </div>
+
+</div>
+
+<div class="final-message">
+Ti voglio bene ❤️
+</div>
+
+<audio id="music" loop>
+  <source src="https://files.catbox.moe/y5zfxo.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+function openEnvelope(){
+
+let envelope = document.querySelector(".envelope");
+envelope.classList.toggle("open");
+
+let music = document.getElementById("music");
+music.play();
+
+createFlowers();
+
+document.querySelector(".final-message").classList.add("show-message");
+
+}
+
+function createFlowers(){
+
+for(let i=0;i<20;i++){
+
+let flower=document.createElement("div");
+flower.innerHTML="🌼";
+
+flower.style.position="fixed";
+flower.style.left=Math.random()*100+"vw";
+flower.style.top="-20px";
+flower.style.fontSize="26px";
+flower.style.animation="fall 5s linear";
+
+document.body.appendChild(flower);
+
+setTimeout(()=>{
+flower.remove();
+},5000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
